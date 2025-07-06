@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Longamba Okudi Louis - Mon Portfolio de Développeur</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* Styles Généraux */
+        :root {
+            --primary-color: #3498db; /* Bleu plus moderne */
+            --secondary-color: #2c3e50; /* Gris foncé élégant */
+            --background-color: #ecf0f1; /* Arrière-plan très clair */
+            --text-color: #34495e; /* Texte sombre pour la lisibilité */
+            --light-text-color: #ffffff; /* Texte clair */
+            --card-background: #ffffff; /* Fond de carte blanc pur */
+            --border-color: #bdc3c7; /* Bordure douce */
+            --accent-color: #e74c3c; /* Rouge pour les accents, les hover */
+            --font-family: 'Poppins', sans-serif; /* Police moderne (importée via Google Fonts ci-dessous) */
+            --heading-font-family: 'Montserrat', sans-serif; /* Police pour les titres */
+        }
+
+        /* Importation des polices Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Poppins:wght@300;400;600&display=swap');
+
+        body {
+            font-family: var(--font-family);
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            scroll-behavior: smooth;
+            overflow-x: hidden; /* Empêche le défilement horizontal non désiré */
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease, transform 0.2s ease-out;
+        }
+
+        a:hover {
+            color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--light-text-color);
+            padding: 12px 28px;
+            border-radius: 50px; /* Boutons plus arrondis */
+            margin-top: 25px;
+            font-size: 1.1em;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: background-color 0.3s ease, transform 0.2s ease-out;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border: none; /* Pour s'assurer que c'est un bouton */
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        h1, h2, h3 {
+            font-family: var(--heading-font-family);
+            color: var(--secondary-color);
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        h1 {
+            font-size: 3.8em; /* Plus grand pour le titre principal */
+            color: var(--light-text-color); /* Couleur claire sur fond sombre */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            font-size: 2.8em;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h2::after { /* Ligne décorative sous les titres de section */
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        section {
+            padding: 80px 20px; /* Plus d'espace */
+            margin-bottom: 0;
+            background-color: var(--card-background);
+            box-shadow: 0 0 20px rgba(0,0,0,0.05); /* Ombre légère pour les sections */
+            border-radius: 8px;
+            margin: 40px auto; /* Centre les sections avec de l'espace */
+            max-width: 1200px; /* Largeur maximale pour les sections */
+        }
+
+        /* Barre de Navigation */
+        .navbar {
+            background-color: var(--secondary-color);
+            padding: 18px 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.25);
+        }
+
+        .navbar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap; /* Permet le passage à la ligne sur petits écrans */
+        }
+
+        .navbar ul li {
+            margin: 0 20px; /* Plus d'espace entre les liens */
+        }
+
+        .navbar ul li a {
+            color: var(--light-text-color);
+            font-weight: 600;
+            font-size: 1.1em;
+            padding: 8px 0;
+            position: relative;
+        }
+
+        .navbar ul li a::after { /* Soulignement animé */
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 0;
+            height: 3px;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease-out;
+        }
+
+        .navbar ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Section Accueil (Hero) */
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%); /* Dégradé de fond */
+            color: var(--light-text-color);
+            text-align: center;
+            padding: 120px 20px; /* Plus de padding */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 90vh; /* Prend plus de hauteur */
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before { /* Effet de fond subtil */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect x="0" y="0" width="100%" height="100%" fill="transparent"/><circle cx="10%" cy="10%" r="50" fill="rgba(255,255,255,0.05)"/><circle cx="90%" cy="40%" r="80" fill="rgba(255,255,255,0.03)"/><circle cx="20%" cy="80%" r="60" fill="rgba(255,255,255,0.07)"/></svg>') no-repeat center center;
+            background-size: cover;
+            opacity: 0.8;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            position: relative; /* Pour être au-dessus du pseudo-élément */
+            z-index: 1;
+        }
+
+        .hero-content p {
+            font-size: 1.4em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        /* Section À Propos */
+        .about-section {
+            text-align: center;
+        }
+
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px; /* Plus d'espace */
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .about-content img {
+            width: 220px; /* Image légèrement plus grande */
+            height: 220px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid var(--primary-color);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15); /* Ombre plus prononcée */
+            transition: transform 0.3s ease-out;
+        }
+
+        .about-content img:hover {
+            transform: scale(1.05); /* Zoom léger au survol */
+        }
+
+        .about-content div {
+            text-align: left;
+            max-width: 700px;
+            line-height: 1.8;
+            font-size: 1.05em;
+        }
+
+        /* Section Projets */
+        .projects-section {
+            background-color: var(--background-color); /* Changement de couleur de fond */
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Adapté aux cartes */
+            gap: 35px; /* Plus d'espace */
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background-color: var(--card-background);
+            border-radius: 12px; /* Coins plus ronds */
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1); /* Ombre plus douce */
+            padding: 25px; /* Plus de padding */
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Pour que les liens soient en bas */
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px); /* Élévation plus marquée */
+            box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+        }
+
+        .project-card img {
+            max-width: 100%;
+            height: 220px; /* Hauteur légèrement augmentée */
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .project-card h3 {
+            color: var(--primary-color);
+            font-size: 1.7em;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .project-card p {
+            font-size: 1em;
+            color: var(--text-color);
+            margin-bottom: 20px;
+            flex-grow: 1; /* Permet au paragraphe de prendre l'espace disponible */
+        }
+
+        .project-card .project-links { /* Conteneur pour les liens de projet */
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px; /* Espace entre les liens */
+            margin-top: auto; /* Pousse les liens vers le bas de la carte */
+        }
+
+        .project-card .project-link {
+            display: inline-flex; /* Utilisez flex pour aligner icône et texte */
+            align-items: center; /* Centrer verticalement */
+            gap: 8px; /* Espace entre icône et texte */
+            background-color: var(--secondary-color);
+            color: var(--light-text-color);
+            padding: 10px 20px;
+            border-radius: 25px; /* Liens plus arrondis */
+            font-size: 0.95em;
+            transition: background-color 0.3s ease, transform 0.2s ease-out;
+        }
+
+        .project-card .project-link:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .project-card .project-link i {
+            margin-right: 8px;
+        }
+
+        /* Section Savoir-faire / Compétences */
+        .skills-section {
+            text-align: center;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px; /* Plus d'espace */
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .skill-item {
+            background-color: var(--primary-color);
+            color: var(--light-text-color);
+            padding: 12px 25px;
+            border-radius: 30px; /* Pastilles plus rondes */
+            font-weight: 600;
+            font-size: 1em;
+            transition: background-color 0.3s ease, transform 0.2s ease-out, box-shadow 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px; /* Espace entre icône et texte */
+        }
+
+        .skill-item:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .skill-item i {
+            font-size: 1.3em;
+        }
+
+        /* Section Contact */
+        .contact-section {
+            background-color: var(--background-color);
+        }
+
+        .contact-form {
+            max-width: 700px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px; /* Plus d'espace */
+        }
+
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form textarea {
+            width: calc(100% - 40px); /* Ajustement pour padding */
+            padding: 15px 20px; /* Plus de padding */
+            border: 1px solid var(--border-color);
+            border-radius: 8px; /* Coins arrondis */
+            font-family: var(--font-family);
+            font-size: 1.05em;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.08);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .contact-form input[type="text"]:focus,
+        .contact-form input[type="email"]:focus,
+        .contact-form textarea:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.3); /* Ombre focus */
+            outline: none;
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .social-links {
+            margin-top: 40px; /* Plus d'espace */
+            display: flex;
+            justify-content: center;
+            gap: 25px; /* Plus d'espace entre les liens sociaux */
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            font-size: 1.2em;
+            font-weight: 600;
+            padding: 10px 15px;
+            border-radius: 25px;
+            background-color: var(--secondary-color);
+            color: var(--light-text-color);
+            transition: background-color 0.3s ease, transform 0.2s ease-out;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .social-links a i {
+            margin-right: 8px;
+        }
+
+        /* Pied de page */
+        footer {
+            background-color: var(--secondary-color);
+            color: var(--light-text-color);
+            text-align: center;
+            padding: 30px; /* Plus de padding */
+            margin-top: 0; /* Ne pas avoir de marge du bas */
+            font-size: 0.95em;
+        }
+
+        /* Bouton de contrôle de musique */
+        .music-toggle-btn {
+            position: fixed;
+            bottom: 30px; /* Plus éloigné du bas */
+            right: 30px; /* Plus éloigné de la droite */
+            background-color: var(--primary-color);
+            color: var(--light-text-color);
+            border: none;
+            border-radius: 50%;
+            width: 60px; /* Plus grand */
+            height: 60px;
+            font-size: 1.4em; /* Icône plus grande */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2); /* Ombre plus prononcée */
+            transition: background-color 0.3s ease, transform 0.2s ease-out, box-shadow 0.3s ease;
+            z-index: 1001;
+            /* Animation pour attirer l'attention */
+            animation: pulse 2s infinite;
+        }
+
+        .music-toggle-btn:hover {
+            background-color: var(--accent-color);
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            animation: none; /* Arrête l'animation au survol */
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Media Queries pour la responsivité */
+        @media (min-width: 768px) {
+            .about-content {
+                flex-direction: row;
+                text-align: left;
+            }
+
+            .about-content img {
+                margin-right: 40px;
+            }
+
+            .about-content div {
+                text-align: left;
+            }
+        }
+
+        @media (max-width: 767px) {
+            h1 {
+                font-size: 2.8em;
+            }
+            h2 {
+                font-size: 2.2em;
+            }
+
+            .hero-content p {
+                font-size: 1.1em;
+            }
+
+            .navbar ul {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .navbar ul li {
+                margin: 5px 0;
+            }
+
+            section {
+                padding: 60px 15px;
+                margin: 20px auto;
+            }
+
+            .about-content img {
+                margin-bottom: 25px;
+            }
+
+            .project-card {
+                padding: 20px;
+            }
+
+            .contact-form input[type="text"],
+            .contact-form input[type="email"],
+            .contact-form textarea {
+                width: calc(100% - 30px); /* Ajustement pour padding */
+                padding: 12px 15px;
+            }
+
+            .music-toggle-btn {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <ul>
+            <li><a href="#accueil">Accueil</a></li>
+            <li><a href="#a-propos">À Propos</a></li>
+            <li><a href="#projets">Projets</a></li>
+            <li><a href="#savoir-faire">Savoir-faire</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header id="accueil" class="hero-section">
+        <div class="hero-content">
+            <h1>Salut, je suis Longamba Okudi Louis</h1>
+            <p>Développeur Web Full-Stack | Doué en Programmation et Réseaux Informatiques</p>
+            <a href="#projets" class="btn">Découvrir mes projets</a>
+        </div>
+    </header>
+
+    <section id="a-propos" class="about-section">
+        <h2>À Propos de Moi</h2>
+        <div class="about-content">
+            <img src="h.png" alt="Votre photo de profil">
+            <div>
+                <p>Je m'appelle **Longamba Okudi Louis**. Je suis un étudiant passionné en **Génie Logiciel** à l'**Université Libre de Kinshasa (ULK)**. Mon parcours académique me permet d'acquérir une expertise solide en développement informatique.</p>
+                <p>J'ai une expérience concrète dans la **création de sites web dynamiques, statiques et vitrines**, démontrant ma capacité à concevoir des solutions web complètes et performantes. Je suis particulièrement doué en **programmation** et en **réseaux informatiques**, ce qui me permet d'aborder les projets avec une vision globale, de l'infrastructure au déploiement.</p>
+                <p>Mon engagement se reflète dans des projets concrets, comme mon **réseau social chrétien (Croyants-Unis)**, où j'ai pu appliquer mes compétences pour bâtir une plateforme fonctionnelle et significative. Mon objectif est d'allier innovation technique et impact positif à travers le code.</p>
+                <p>En dehors du développement, j'apprécie la lecture, le sport et la musique.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projets" class="projects-section">
+        <h2>Mes Projets</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <img src="11.png" alt="Image du Réseau Social Chrétien Croyants-Unis">
+                <h3>Croyants-Unis (Application Web)</h3>
+                <p>Développement complet d'une plateforme de réseau social dédiée aux interactions chrétiennes. Ce projet intègre un système d'authentification sécurisé, la gestion de profils utilisateurs et la publication de contenus interactifs. Réalisé avec **PHP** pour la logique serveur et **MySQL** pour la persistance des données.</p>
+                <div class="project-links">
+                    <a href="projets.html" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i> Réalisations en Images</a>
+                    <a href="#" class="project-link"><i class="fab fa-github"></i> Code Source (Bientôt)</a>
+                </div>
+            </div>
+
+            
+            </div>
+            </div>
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="projets.html" class="btn">Mes qulques Réalisations en Images <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </section>
+
+    <section id="savoir-faire" class="skills-section">
+        <h2>Mon Savoir-Faire</h2>
+        <div class="skills-list">
+            <div class="skill-item"><i class="fab fa-html5"></i> HTML5</div>
+            <div class="skill-item"><i class="fab fa-css3-alt"></i> CSS3</div>
+            <div class="skill-item"><i class="fab fa-js-square"></i> JavaScript</div>
+            <div class="skill-item"><i class="fab fa-php"></i> PHP</div>
+            <div class="skill-item"><i class="fas fa-database"></i> MySQL</div>
+            <div class="skill-item"><i class="fab fa-android"></i> Android (Java/Kotlin)</div> <div class="skill-item"><i class="fab fa-git-alt"></i> Git</div>
+            <div class="skill-item"><i class="fab fa-github"></i> GitHub</div>
+            <div class="skill-item"><i class="fas fa-network-wired"></i> Réseaux Informatiques</div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <h2>Me Contacter</h2>
+        <p>N'hésitez pas à me contacter si vous avez des questions, des opportunités de collaboration ou simplement pour échanger.</p>
+        <div style="text-align: center;">
+           <a href="https://mail.google.com/mail/?view=cm&fs=1&to=lmazagabrito@gmail.com" target="_blank" class="btn">M'envoyer un Email via Gmail <i class="fas fa-envelope"></i></a>
+        </div>
+        <div class="social-links">
+            <a href="https://wa.me/243978042366" target="_blank" aria-label="Contacter sur WhatsApp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+
+            <a href="#" target="_blank" aria-label="Mon profil GitHub"><i class="fab fa-github"></i> GitHub</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; <?php echo date("Y"); ?> Longamba Okudi Louis. Tous droits réservés.</p>
+    </footer>
+
+    <audio id="backgroundMusic" src="Emmanuel_Musongo_feat_avec_son_élève_AMOS-MOES_dans_cover_live_je_veux_te_voi.mp3" loop></audio>
+    <button id="musicToggleBtn" class="music-toggle-btn" aria-label="Activer/Désactiver la musique"><i class="fas fa-music"></i></button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Gestion du défilement fluide pour les liens de navigation
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Gestion de la musique de fond
+            const backgroundMusic = document.getElementById('backgroundMusic');
+            const musicToggleBtn = document.getElementById('musicToggleBtn');
+            let isMusicPlaying = false; // Garde l'état de la musique
+
+            if (musicToggleBtn && backgroundMusic) {
+                // *** Définir le volume de la musique ici (entre 0.0 et 1.0) ***
+                backgroundMusic.volume = 0.3; // Par exemple, 30% du volume maximal
+
+                // Tentative de lecture automatique
+                backgroundMusic.play().then(() => {
+                    isMusicPlaying = true;
+                    musicToggleBtn.innerHTML = '<i class="fas fa-pause"></i>'; // Icône Pause si succès
+                    console.log("La musique a démarré automatiquement.");
+                }).catch(e => {
+                    // Si la lecture automatique est bloquée
+                    console.log("La lecture automatique de la musique a été bloquée par le navigateur ou nécessite une interaction de l'utilisateur.", e);
+                    musicToggleBtn.innerHTML = '<i class="fas fa-play"></i>'; // Icône Play par défaut
+                    isMusicPlaying = false; // Assurez-vous que l'état est correct
+                });
+
+                musicToggleBtn.addEventListener('click', function() {
+                    if (isMusicPlaying) {
+                        backgroundMusic.pause();
+                        musicToggleBtn.innerHTML = '<i class="fas fa-play"></i>'; // Icône Play
+                    } else {
+                        // Tenter de jouer la musique sur interaction
+                        backgroundMusic.play().then(() => {
+                            musicToggleBtn.innerHTML = '<i class="fas fa-pause"></i>'; // Icône Pause
+                        }).catch(e => {
+                            console.error("Erreur lors de la tentative de lecture de la musique après le clic :", e);
+                            alert("Impossible de lire la musique. Le navigateur a bloqué la lecture.");
+                            musicToggleBtn.innerHTML = '<i class="fas fa-play"></i>'; // Garde l'icône Play si échec
+                        });
+                    }
+                    isMusicPlaying = !isMusicPlaying; // Inverse l'état
+                });
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Gestion du défilement fluide pour les liens de navigation
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Gestion de la musique de fond
+            const backgroundMusic = document.getElementById('backgroundMusic');
+            const musicToggleBtn = document.getElementById('musicToggleBtn');
+            let isMusicPlaying = false; // Garde l'état de la musique
+
+            if (musicToggleBtn && backgroundMusic) {
+                // Tentative de lecture automatique, mais avec un gestionnaire d'erreur
+                // La lecture automatique est souvent bloquée par les navigateurs
+                backgroundMusic.play().then(() => {
+                    isMusicPlaying = true;
+                    // Mise à jour de l'icône si la lecture auto réussit
+                    musicToggleBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                }).catch(e => {
+                    console.log("La lecture automatique de la musique a été bloquée par le navigateur ou n'est pas supportée.", e);
+                    // L'icône reste "lecture" par défaut
+                    musicToggleBtn.innerHTML = '<i class="fas fa-play"></i>';
+                });
+
+                musicToggleBtn.addEventListener('click', function() {
+                    if (isMusicPlaying) {
+                        backgroundMusic.pause();
+                        musicToggleBtn.innerHTML = '<i class="fas fa-play"></i>'; // Icône Play
+                    } else {
+                        backgroundMusic.play().then(() => {
+                            musicToggleBtn.innerHTML = '<i class="fas fa-pause"></i>'; // Icône Pause
+                        }).catch(e => {
+                            console.error("Erreur lors de la tentative de lecture de la musique :", e);
+                            alert("Impossible de lire la musique. Vérifiez les autorisations du navigateur.");
+                            musicToggleBtn.innerHTML = '<i class="fas fa-play"></i>'; // Garde l'icône Play si échec
+                        });
+                    }
+                    isMusicPlaying = !isMusicPlaying; // Inverse l'état
+                });
+            }
+        });
+    </script>
+</body>
+</html>

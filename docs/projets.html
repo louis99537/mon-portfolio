@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes Projets - Longamba Okudi Louis</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* Importation des polices Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Poppins:wght@300;400;600&display=swap');
+
+        :root {
+            --primary-color: #3498db; /* Bleu moderne */
+            --secondary-color: #2c3e50; /* Gris foncé élégant */
+            --background-color: #ecf0f1; /* Arrière-plan très clair */
+            --text-color: #34495e; /* Texte sombre pour la lisibilité */
+            --light-text-color: #ffffff; /* Texte clair */
+            --card-background: #ffffff; /* Fond de carte blanc pur */
+            --border-color: #bdc3c7; /* Bordure douce */
+            --accent-color: #e74c3c; /* Rouge pour les accents, les hover */
+            --font-family: 'Poppins', sans-serif;
+            --heading-font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-family);
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--heading-font-family);
+            color: var(--secondary-color);
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease, transform 0.2s ease-out;
+        }
+
+        a:hover {
+            color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        /* En-tête de la page (similaire au Hero Section mais plus compact) */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--light-text-color);
+            text-align: center;
+            padding: 80px 20px 60px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            margin-bottom: 40px;
+        }
+
+        .page-header h1 {
+            color: var(--light-text-color);
+            font-size: 3.2em;
+            margin-bottom: 10px;
+        }
+
+        .page-header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+            margin-bottom: 25px;
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: var(--accent-color);
+            color: var(--light-text-color);
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-size: 1em;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease-out;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-back:hover {
+            background-color: #c0392b; /* Un peu plus foncé au survol */
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Conteneur de la galerie */
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0px auto 60px auto; /* Marge supérieure réduite */
+            padding: 0 20px;
+        }
+
+        /* Carte de projet individuelle */
+        .project-card {
+            background-color: var(--card-background);
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            overflow: hidden; /* Pour que le border-radius s'applique à l'image */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer; /* Indique que la carte est cliquable */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 250px; /* Hauteur fixe pour toutes les images */
+            object-fit: cover; /* Assure que l'image couvre l'espace sans déformation */
+            display: block;
+            border-bottom: 1px solid var(--border-color);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover img {
+            transform: scale(1.03); /* Léger zoom sur l'image au survol de la carte */
+        }
+
+        .project-card h3 {
+            font-size: 1.5em;
+            margin: 20px 15px 10px;
+            color: var(--primary-color);
+            text-align: left;
+        }
+
+        .project-card p {
+            font-size: 0.95em;
+            color: var(--text-color);
+            margin: 0 15px 20px;
+            text-align: left;
+            flex-grow: 1; /* Permet au paragraphe de prendre l'espace restant */
+        }
+
+        /* Pied de page */
+        .page-footer {
+            background-color: var(--secondary-color);
+            color: var(--light-text-color);
+            text-align: center;
+            padding: 30px;
+            font-size: 0.95em;
+            margin-top: 60px; /* Espace au-dessus du footer */
+        }
+
+        /* Modale pour l'affichage plein écran */
+        .modal {
+            display: none; /* Cachée par défaut */
+            position: fixed; /* Reste en place même au défilement */
+            z-index: 2000; /* Plus haut que tout le reste */
+            left: 0;
+            top: 0;
+            width: 100%; /* Toute la largeur */
+            height: 100%; /* Toute la hauteur */
+            overflow: auto; /* Active le défilement si nécessaire */
+            background-color: rgba(0,0,0,0.9); /* Fond noir semi-transparent */
+            animation: fadeIn 0.3s forwards; /* Animation d'apparition */
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain; /* L'image s'adapte sans être coupée */
+            animation: zoomIn 0.3s forwards; /* Animation de zoom */
+        }
+
+        #caption {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            text-align: center;
+            color: #ccc;
+            padding: 10px 0;
+            height: 150px; /* Espace pour la légende */
+            font-size: 1.1em;
+            opacity: 0; /* Caché au début */
+            animation: captionFadeIn 0.5s 0.3s forwards; /* Animation après le zoom */
+        }
+
+        /* Bouton de fermeture */
+        .close-button {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+            z-index: 2001; /* Pour être cliquable */
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: var(--accent-color);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Animations Keyframes */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.8); }
+            to { transform: scale(1); }
+        }
+
+        @keyframes captionFadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Media Queries pour la responsivité */
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.5em;
+            }
+            .page-header p {
+                font-size: 1em;
+            }
+            .gallery-container {
+                grid-template-columns: 1fr; /* Une seule colonne sur mobile */
+                padding: 0 15px;
+            }
+            .project-card {
+                padding: 15px;
+            }
+            .project-card h3 {
+                font-size: 1.3em;
+            }
+            .project-card p {
+                font-size: 0.9em;
+            }
+            .close-button {
+                top: 15px;
+                right: 20px;
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="page-header">
+        <div class="header-content">
+            <h1>Mes qulques Réalisations en Images</h1>
+            <p>Découvrez mes projets à travers une galerie visuelle</p>
+            <a href="index.html#projets" class="btn-back"><i class="fas fa-arrow-left"></i> Retour au Portfolio</a>
+        </div>
+    </header>
+
+    <main class="gallery-container">
+        <div class="project-card">
+            <img src="Capture d’écran (195).png" alt="Capture d'écran du Réseau Social Chrétien 1" data-full="Capture d’écran (195).png">
+            <h3>Croyants-Unis - Page de Connexion</h3>
+            <p>Interface intuitive pour l'accès des utilisateurs à mon réseau social.</p>
+        </div>
+
+        <div class="project-card">
+            <img src="Capture d’écran (196).png" alt="Capture d'écran du Réseau Social Chrétien 2" data-full="Capture d’écran (196).png">
+            <h3>Croyants-Unis - Fil d'Actualité</h3>
+            <p>Vue des profil d'utilisateur et interactions en temps réel sur la plateforme.</p>
+        </div>
+
+        <div class="project-card">
+            <img src="Capture d’écran (201).png" alt="Capture d'écran du Réseau Social Chrétien 3" data-full="Capture d’écran (201).png">
+            <h3>page messagerie</h3>
+            <p>Aperçu du tableau de bord de messagerie, mettant en évidence les fonctionnalités clés.</p>
+        </div>
+
+       
+
+        </main>
+
+    <footer class="page-footer">
+        <p>&copy; 2025 Longamba Okudi Louis. Tous droits réservés.</p>
+    </footer>
+
+    <div id="imageModal" class="modal">
+        <span class="close-button">&times;</span>
+        <img class="modal-content" id="img01">
+        <div id="caption"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Obtenir la modale
+            const modal = document.getElementById("imageModal");
+
+            // Obtenir l'image et l'élément où elle sera affichée dans la modale
+            const modalImg = document.getElementById("img01");
+            const captionText = document.getElementById("caption");
+
+            // Obtenir toutes les cartes de projet
+            const projectCards = document.querySelectorAll(".project-card img");
+
+            // Parcourir toutes les images et ajouter l'événement de clic
+            projectCards.forEach(img => {
+                img.addEventListener('click', function() {
+                    modal.style.display = "block"; // Afficher la modale
+                    modalImg.src = this.dataset.full || this.src; // Utilise l'image 'data-full' si elle existe, sinon l'originale
+                    captionText.innerHTML = this.alt; // Utilise le texte 'alt' comme légende
+                });
+            });
+
+            // Obtenir le bouton de fermeture
+            const span = document.getElementsByClassName("close-button")[0];
+
+            // Quand l'utilisateur clique sur (x), fermer la modale
+            span.addEventListener('click', function() {
+                modal.style.display = "none";
+            });
+
+            // Quand l'utilisateur clique en dehors de l'image (sur le fond noir), fermer la modale
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.style.display = "none";
+                }
+            });
+
+            // Gérer la touche Échap pour fermer la modale
+            document.addEventListener('keydown', function(e) {
+                if (e.key === "Escape" && modal.style.display === "block") {
+                    modal.style.display = "none";
+                }
+            });
+        });
+    </script>
+</body>
+</html>
